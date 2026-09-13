@@ -1,10 +1,13 @@
 name,age,score
 David,21,87
 Juan,22,91
-Arman,31,36
+Arman,36
+Aidana,21,100
 Ryota,23,88
-Ilari,22,95
+David,,95
 Aidana,21,100
 Beksultan,21,
 Emma,25,59
+David,21,87
+Ryota,23,unknown
 
