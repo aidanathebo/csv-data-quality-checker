@@ -1,14 +1,16 @@
-from analyzer import load_csv
+from analyzer import DataQualityAnalyzer, load_csv
 from report import print_report
 
 
 def main():
     df = load_csv("data/example.csv")
-    print_report(df)
+
+    analyzer = DataQualityAnalyzer(df)
+
+    print_report(analyzer)
 
 
 if __name__ == "__main__":
     main()
-
 
     

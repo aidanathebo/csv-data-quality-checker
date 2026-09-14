@@ -1,16 +1,12 @@
-from analyzer import (
-    get_basic_info,
-    get_missing_values,
-    get_duplicate_count,
-    get_column_types,
-)
+from analyzer import DataQualityAnalyzer
 
+def print_report(analyzer):
 
-def print_report(df):
-    basic_info = get_basic_info(df)
-    missing_values = get_missing_values(df)
-    duplicate_count = get_duplicate_count(df)
-    column_types = get_column_types(df)
+    basic_info = analyzer.get_basic_info()
+    missing_values = analyzer.get_missing_values()
+    duplicate_count = analyzer.get_duplicate_count()
+    column_types = analyzer.get_column_types()
+    outliers = analyzer.get_outliers()
 
     print("CSV Data Quality Report")
     print("=======================")
@@ -33,3 +29,7 @@ def print_report(df):
 
     for column, column_type in column_types.items():
         print(f"  {column}: {column_type}")
+
+    print("\nOutliers:")
+    for column, count in outliers.items():
+        print(f"  {column}: {count}")
