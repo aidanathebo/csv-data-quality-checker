@@ -1,6 +1,6 @@
 import sys
 from src.csv_checker.analyzer import DataQualityAnalyzer, load_csv
-from src.csv_checker.report import print_report
+from src.csv_checker.report import print_report, generate_html_report
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
 
     analyzer = DataQualityAnalyzer(df)
     print_report(analyzer)
-
+    generate_html_report(analyzer, "reports/report.html")
 
 if __name__ == "__main__":
     main()
