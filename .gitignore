@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 .vscode/
+netflix_titles.csv
+example.csv

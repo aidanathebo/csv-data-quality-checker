@@ -1,4 +1,3 @@
-from analyzer import DataQualityAnalyzer
 
 def print_report(analyzer):
 
@@ -31,5 +30,9 @@ def print_report(analyzer):
         print(f"  {column}: {column_type}")
 
     print("\nOutliers:")
-    for column, count in outliers.items():
-        print(f"  {column}: {count}")
+    
+    for column, info in outliers.items():
+        print(f"  {column}: {info['count']}")
+
+        for row, value in zip(info["rows"], info["values"]):
+            print(f"    row {row+2}: {value}")

@@ -1,20 +1,16 @@
 import pandas as pd
 import pytest
 
-from src.csv_checker.analyzer import (
-    get_basic_info,
-    get_missing_values,
-    get_duplicate_count,
-    get_column_types,
-)
+from src.csv_checker.analyzer import DataQualityAnalyzer
+
 
 def test_get_basic_info():
     df = pd.DataFrame({
         "name": ["Alice", "Bob", "Charlie"],
         "age": [21, 22, 23],
     })
-
-    result = get_basic_info(df)
+    analyzer = DataQualityAnalyzer(df)
+    result = analyzer.get_basic_info()
 
     assert result["rows"] == 3
     assert result["columns"] == 2
@@ -25,8 +21,8 @@ def test_get_missing_values():
         "name": ["Alice", "Bob", "Charlie"],
         "age": [21, None, 23],
     })
-
-    result = get_missing_values(df)
+    analyzer = DataQualityAnalyzer(df)
+    result = analyzer.get_missing_values()
 
     assert result["name"]["count"] == 0
     assert result["age"]["count"] == 1
@@ -37,8 +33,8 @@ def test_get_duplicate_count():
         "name": ["Alice", "Bob", "Bob"],
         "age": [21, 22, 22],
     })
-
-    result = get_duplicate_count(df)
+    analyzer = DataQualityAnalyzer(df)
+    result = analyzer.get_duplicate_count()
 
     assert result == 1
 
@@ -48,11 +44,23 @@ def test_get_column_types():
         "name": ["Alice", "Bob"],
         "age": [21, 22],
     })
-
-    result = get_column_types(df)
+    analyzer = DataQualityAnalyzer(df)
+    result = analyzer.get_column_types()
 
     assert result["name"] == "text"
     assert result["age"] == "numeric"
+
+
+def test_outlier_detection():
+    df = pd.DataFrame({
+        "value": [10, 11, 12, 13, 100]
+    })
+    analyzer = DataQualityAnalyzer(df)
+    result = analyzer.get_outliers()
+
+    assert result["value"]["count"] == 1
+    assert result["value"]["rows"] == [4]
+    assert result["value"]["values"] == [100]
 
 
 

@@ -58,7 +58,12 @@ class DataQualityAnalyzer:
                 | (self.df[column] > upper_bound)
             ]
 
-            result[column] = len(outliers)
+
+            result[column] = {
+            "count": len(outliers),
+            "rows": outliers.index.tolist(),
+            "values": outliers[column].tolist(),
+            }
 
         return result
 
