@@ -75,7 +75,7 @@ Outliers:
 ```
 
 ## Project Structure
-
+``` text
 csv-data-quality-checker/
 ├── data/                  # Example CSV datasets
 ├── reports/               # Generated HTML reports
@@ -88,6 +88,7 @@ csv-data-quality-checker/
 ├── main.py                # Command-line entry point
 ├── requirements.txt       # Python dependencies
 └── README.md
+```
 
 ## Testing
 
