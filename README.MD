@@ -1,6 +1,6 @@
 # CSV Data Quality Checker
 
-A command-line Python tool for analyzing CSV files and chacking their data quality. 
+A command-line Python tool for analyzing CSV files and checking their data quality. 
 
 The tool analyzes a CSV dataset, displays the results in the terminal, and generates an HTML report.
 
