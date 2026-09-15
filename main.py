@@ -12,8 +12,13 @@ def main():
 
     try:
         df = load_csv(file_path)
-    except FileNotFoundError:
-        print(f"Error: file not found: {file_path}")
+
+    except FileNotFoundError as error:
+        print(f"Error: {error}")
+        return
+
+    except ValueError as error:
+        print(f"Error: {error}")
         return
 
     analyzer = DataQualityAnalyzer(df)

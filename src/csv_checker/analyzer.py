@@ -1,7 +1,26 @@
 import pandas as pd
 
+import pandas as pd
+
+
 def load_csv(file_path):
-        return pd.read_csv(file_path)
+    if not str(file_path).lower().endswith(".csv"):
+        raise ValueError("The file must be a CSV file.")
+
+    try:
+        df = pd.read_csv(file_path)
+
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    except pd.errors.EmptyDataError:
+        raise ValueError("The CSV file is empty.")
+
+    except pd.errors.ParserError:
+        raise ValueError("The CSV file could not be parsed.")
+
+    return df
+
 
 class DataQualityAnalyzer:
     def __init__(self, dataframe):

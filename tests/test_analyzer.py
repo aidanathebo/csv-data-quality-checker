@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.csv_checker.analyzer import DataQualityAnalyzer
+from src.csv_checker.analyzer import DataQualityAnalyzer, load_csv
 
 
 def test_get_basic_info():
@@ -61,6 +61,31 @@ def test_outlier_detection():
     assert result["value"]["count"] == 1
     assert result["value"]["rows"] == [4]
     assert result["value"]["values"] == [100]
+
+
+def test_load_non_csv_file():
+    with pytest.raises(ValueError, match="The file must be a CSV file"):
+        load_csv("data/example.txt")
+
+
+def test_load_missing_file():
+    with pytest.raises(FileNotFoundError):
+        load_csv("data/does_not_exist.csv")
+
+
+def test_load_empty_csv(tmp_path):
+    file_path = tmp_path / "empty.csv"
+    file_path.write_text("")
+
+    with pytest.raises(ValueError, match="The CSV file is empty"):
+        load_csv(file_path)
+
+def test_load_empty_csv(tmp_path):
+    file_path = tmp_path / "empty.csv"
+    file_path.write_text("")
+
+    with pytest.raises(ValueError, match="The CSV file is empty"):
+        load_csv(file_path)
 
 
 
