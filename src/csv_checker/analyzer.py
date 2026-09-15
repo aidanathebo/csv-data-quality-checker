@@ -1,8 +1,5 @@
 import pandas as pd
 
-import pandas as pd
-
-
 def load_csv(file_path):
     if not str(file_path).lower().endswith(".csv"):
         raise ValueError("The file must be a CSV file.")
